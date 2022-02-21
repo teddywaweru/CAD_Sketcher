@@ -194,6 +194,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../getting_started/" class="md-nav__link">
         Getting started
       </a>
@@ -362,19 +377,59 @@
     Access Logs
   </a>
   
+    <nav class="md-nav" aria-label="Access Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addon-logs" class="md-nav__link">
+    Addon Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blender-crash-log" class="md-nav__link">
+    Blender Crash Log
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
+  <a href="#contribute" class="md-nav__link">
+    Contribute
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#documentation" class="md-nav__link">
     Documentation
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#development" class="md-nav__link">
     Development
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -429,19 +484,59 @@
     Access Logs
   </a>
   
+    <nav class="md-nav" aria-label="Access Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addon-logs" class="md-nav__link">
+    Addon Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blender-crash-log" class="md-nav__link">
+    Blender Crash Log
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
+  <a href="#contribute" class="md-nav__link">
+    Contribute
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#documentation" class="md-nav__link">
     Documentation
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#development" class="md-nav__link">
     Development
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -465,7 +560,8 @@
 <ul>
 <li>Check if the bug is already reported on <a href="https://github.com/hlorus/geometry_sketcher/labels/bug">github</a></li>
 <li>Try to reliably reproduce the bug and simplify the steps to reproduce</li>
-<li>Collect the <a href="#access-logs">logs</a></li>
+<li>Collect the <a href="#access-logs">addon logs</a></li>
+<li>In case of a crash also collect blender's <a href="https://docs.blender.org/manual/en/latest/troubleshooting/crash.html#:~:text=%2Do%20%25MEM%20.-,Crash%20Log,as%20some%20other%20debug%20information">crash report</a></li>
 <li>Post the bug on <a href="https://github.com/hlorus/geometry_sketcher/issues/new?assignees=&amp;labels=bug&amp;template=bug-report.md&amp;title=%5BBUG%5D">github</a></li>
 </ul>
 <h2 id="console-output">Console Output</h2>
@@ -488,26 +584,34 @@ system terminal. Follow the guide below to access blender's system console.</p>
 </div>
 </div>
 <h2 id="access-logs">Access Logs</h2>
+<p>Logs are helpful for debugging. Note that there are logs from the addon as well as from blender itself.</p>
+<h3 id="addon-logs">Addon Logs</h3>
 <p>The addon logs information to the <a href="#console-output">system console</a> and to the system's temporary
 folder. The filepath to this folder will be printed to the console whenever the
 addon gets registered.</p>
 <blockquote>
 <p>geometry_sketcher:{INFO}: Logging into: C:\Users\USERNAME\AppData\Local\Temp\geometry_sketcher.log</p>
 </blockquote>
-<h2 id="documentation">Documentation</h2>
+<h3 id="blender-crash-log">Blender Crash Log</h3>
+<p>When blender crashes it writes a crash report file, see: <a href="https://docs.blender.org/manual/en/latest/troubleshooting/crash.html#crash-log">crash report</a>.</p>
+<h2 id="contribute">Contribute</h2>
+<p>Help is always welcome. There are multiple ways to support the project.</p>
+<h3 id="testing">Testing</h3>
+<p>Just grab the latest version, play around, provide feedback and redo!</p>
+<h3 id="documentation">Documentation</h3>
 <p>Documentation is generated from the source repository with <a href="https://www.mkdocs.org/">MkDocs</a>.
 In order to contribute either post a pull request with your changes on
 <a href="https://github.com/hlorus/geometry_sketcher">github</a> or ask on , <a href="https://discord.gg/GzpJsShgxa">discord</a> for commit access.</p>
-<blockquote>
-<p>TODO: Workboard</p>
-</blockquote>
-<h2 id="development">Development</h2>
-<p>If you'd like to help with development simply submit pull requests or reach out to me
+<!-- TODO: Workboard -->
+
+<h3 id="development">Development</h3>
+<p>If you'd like to help with development simply submit pull requests or reach out on
 <a href="https://discord.gg/GzpJsShgxa">discord</a>, twitter or email.</p>
-<blockquote>
-<p>TODO: Technical documentation</p>
-<p>TODO: Workboard</p>
-</blockquote>
+<p>You can take a look at the code reference however a lot of it is still WIP.
+<a href="../reference/">Code Reference</a></p>
+<!-- TODO: Workboard -->
+
+<!-- ### Donate -->
 
               
             </article>

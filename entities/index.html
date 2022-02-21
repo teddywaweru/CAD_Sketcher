@@ -194,6 +194,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../getting_started/" class="md-nav__link">
         Getting started
       </a>
@@ -586,14 +601,10 @@
 
   <h1>Entities</h1>
 
-<p>Entities are the basic elements which are used to draw geometry in BGS. They differ from regular blender mesh or curve elements which means native blender tools aren't able to interact with it as long as they aren't converted. See the chapter <a href="">Integration</a> for further details on how to process addon specific geometry.</p>
-<p>Entities are defined by a set of parameters and pointers to other entities which are editable at any point in time. This allows non-destructive workflows and also ensures that geometry is resoulution independent.  A curve will always follow a given radius no matter how it's transformed.</p>
-<p>Entity types follow the implementation of <a href="https://solvespace.readthedocs.io/en/latest/entities/index.html">solvespace</a>.</p>
-<p>TODO:
-- no resolution for curves
-- dof
-- visibility</p>
-<p>In order to create entities use the different <a href="../user_interface/#workspacetools">Workspacetools</a>.</p>
+<p>Entities are the basic elements which are used to draw geometry in BGS. They differ from regular blender mesh or curve elements which means native blender tools aren't able to interact with it as long as they aren't converted. See the chapter <a href="../integration/">integration</a> for further details on how to process addon specific geometry.</p>
+<p>Entities are defined by a set of parameters and pointers to other entities which are editable at any point in time. This allows non-destructive workflows and also ensures that geometry is resolution independent. A curve will always follow a given radius no matter how it's transformed. Entities can be created with the various <a href="../user_interface/#workspacetools">Workspacetools</a>.</p>
+<!-- TODO: DOF -->
+
 <h2 id="active">Active</h2>
 <p>An entity is considered to be active when the sketch it belongs to is set as the active
 sketch or, for 3D entities, when no sketch is active.</p>
@@ -610,6 +621,7 @@ or from the <a href="user_interface#Entity Browser">entity browser</a>.</p>
 <h2 id="types">Types</h2>
 <p>There are different types of entities, some of them apply in 2 dimensional space which requires a <a href="#geometry_sketcher.class_defines.SlvsSketch">sketch</a> as a parameter.</p>
 <blockquote>
+<p>Entity types follow the implementation of <a href="https://solvespace.readthedocs.io/en/latest/entities/index.html">solvespace</a>.</p>
 <p>Only 2D entities can be converted later, check the chapter <a href="../integration/">integration</a> for details.</p>
 </blockquote>
 

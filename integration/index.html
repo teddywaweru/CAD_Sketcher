@@ -194,6 +194,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../getting_started/" class="md-nav__link">
         Getting started
       </a>
@@ -540,9 +555,9 @@
 
   <h1>Integration</h1>
 
-<p>Geometry in BGS isn't native blender geometry, that means blender doesn't know
-anything about it and native tools cannot work with BGS geometry.
-So in order to further process drawn shapes they have to be converted to a native type.</p>
+<p>The geometry that is used in the addon isn't native blender geometry, that means
+blender doesn't know anything about it and native tools cannot work with it.
+So in order to further process drawn shapes they have to be converted to a native type first.</p>
 <blockquote>
 <p><strong>INFO:</strong> There are some <a href="./#limitations">limitations</a> to keep in mind when converting.</p>
 </blockquote>
@@ -550,8 +565,8 @@ So in order to further process drawn shapes they have to be converted to a nativ
 <p>When a sketch is active you can choose the convert type for it in the sidebar. By
 default this is set to None which means no native geometry will be created.</p>
 <blockquote>
-<p><strong>INFO:</strong> Setting this to something other than None will disable the sketch
-visibility so that it will only show when it's active</p>
+<p><strong>INFO:</strong> Setting this to something other than None will disable the visibility
+of the sketch so that it will only show when it's active</p>
 </blockquote>
 <h3 id="bezier-converter">Bezier Converter</h3>
 <p>Converts the sketch to a bezier curve.</p>
