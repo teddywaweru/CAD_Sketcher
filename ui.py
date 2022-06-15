@@ -2,17 +2,41 @@ import bpy
 from bpy.types import Panel, Menu, UIList
 from . import operators, functions, class_defines
 
+"""
+DEFAULT ON COMMENTING:
 
+'C' is used to reference Blender's 'bpy.context'/'bpy.data' Class Instances
+"""
+
+
+#Instance of UIlist for drawing list of sketches in active scene.
 class VIEW3D_UL_sketches(UIList):
     def draw_item(
         self, context, layout, data, item, icon, active_data, active_propname, index=0
     ):
+        """Function draws each sketch(item) in the add-on's Sketcher Panel
+
+        Args:
+            context (_type_): _description_
+            layout (_type_): _description_
+            data (C.scene.sketcher.entities): _description_
+            item (C.scene.sketcher.entities.sketches): _description_
+            icon (_type_): _description_
+            active_data (C.scenes['Scene'].sketcher): _description_
+            active_propname (_type_): _description_
+            index (int, optional): _description_. Defaults to 0.
+        """
+        #A00 is the draw_item function call called iteratively for each item in the collection?
+
+        #A00 where is the declaration of the layout_type? Does it mean 
         if self.layout_type in {"DEFAULT", "COMPACT"}:
             if item:
                 active = index == getattr(active_data, active_propname)
 
                 row = layout.row(align=True)
                 row.alignment = "LEFT"
+
+                #Property Object to toggle visibility of sketch
                 row.prop(
                     item,
                     "visible",
@@ -20,11 +44,15 @@ class VIEW3D_UL_sketches(UIList):
                     icon=("HIDE_OFF" if item.visible else "HIDE_ON"),
                     emboss=False,
                 )
+
+                #Property Object to display Sketch name 
                 row.prop(item, "name", text="", emboss=False, icon_value=icon)
 
                 row = layout.row()
                 row.alignment = "RIGHT"
 
+                #If state of sketch solver is not okay, display error icon
+                #A00 what part of code shows actual error in pop up? & symbol?
                 if item.solver_state != "OKAY":
                     row.operator(
                         operators.View3D_OT_slvs_show_solver_state.bl_idname,
@@ -35,6 +63,7 @@ class VIEW3D_UL_sketches(UIList):
                         ),
                     ).index = item.slvs_index
 
+                #Display edit button & connected to Enable Active Sketch Operator
                 row.operator(
                     operators.View3D_OT_slvs_set_active_sketch.bl_idname,
                     icon="OUTLINER_DATA_GP_LAYER",
@@ -42,6 +71,7 @@ class VIEW3D_UL_sketches(UIList):
                     emboss=False,
                 ).index = item.slvs_index
 
+                # For active sketch, display the Delete button
                 if active:
                     row.operator(
                         operators.View3D_OT_slvs_delete_entity.bl_idname,
@@ -298,6 +328,40 @@ class VIEW3D_MT_sketches(Menu):
             ).index = sk.slvs_index
 
 
+class VIEW3D_PT_sketcher_attributes(Panel):
+    bl_label = "Attributes"
+    bl_idname = "VIEW3D_PT_sketcher_attributes"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Sketcher"
+    bl_options = {"DEFAULT_CLOSED"}
+
+    def draw(self,context):
+        layout = self.layout
+
+        row = layout.row()
+
+
+#Create Pie Menu object
+class CS_MT_Bool_Menu(Menu):
+    bl_idname = "CS_MT_Bool_Menu"
+    bl_label = "Pie Menu"
+
+    def draw(self,context):
+        layout = self.layout
+
+        pie = layout.menu_pie()
+
+        active_object = context.active_object
+
+        if active_object:
+            mode= active_object.mode
+
+            if mode=="OBJECT":
+                pie.operator(operators.View3D_OT_slvs_set_active_sketch.bl_idname,
+                            icon="MOD_BOOLEAN")
+
+
 def sketch_selector(context, layout, is_header=False, show_selector=True):
     row = layout.row(align=is_header)
     index = context.scene.sketcher.active_sketch_i
@@ -322,6 +386,7 @@ def sketch_selector(context, layout, is_header=False, show_selector=True):
     else:
         row.scale_y = scale_y
         # TODO: Don't show text when is_header
+        #A00 why not show text here? else show from where?
         row.operator(
             operators.View3D_OT_slvs_add_sketch.bl_idname, icon="ADD"
         ).wait_for_input = True
@@ -346,18 +411,28 @@ def draw_object_context_menu(self, context):
     layout.separator()
 
 
+        
+
 classes = (
     VIEW3D_UL_sketches,
     VIEW3D_PT_sketcher,
     VIEW3D_PT_sketcher_entities,
     VIEW3D_PT_sketcher_constraints,
+    VIEW3D_PT_sketcher_attributes,
     VIEW3D_MT_sketches,
+    CS_MT_Bool_Menu
 )
 
 
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
+
+    kc = bpy.context.window_manager.keyconfigs.addon
+    km = kc.keymaps.new(name="3D View", space_type="VIEW_3D")
+
+    km_menu = km.keymap_items.new("wm.call_menu_pie","COMMA","PRESS", shift=True)
+    km_menu.properties.name = CS_MT_Bool_Menu.bl_idname
 
     bpy.types.VIEW3D_MT_object_context_menu.prepend(draw_object_context_menu)
 
